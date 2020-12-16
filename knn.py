@@ -139,5 +139,8 @@ class KNN:
         for i in range(num_test):
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            nearest = np.argsort(dists[i])
+            closest_y = self.train_y[nearest[0:self.k]]
+            (values, counts) = np.unique(closest_y, return_counts = True)
+            pred[i] = values[np.argmax(counts)]
         return pred
